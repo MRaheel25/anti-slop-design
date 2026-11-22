@@ -1,0 +1,1 @@
+{"servers":{"anti-slop-design":{"args":["/absolute/path/to/anti-slop-design/mcp/dist/server.js"],"command":"node","type":"stdio"}}}

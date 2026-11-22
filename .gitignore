@@ -1,0 +1,4 @@
+node_modules/
+dist/
+.DS_Store
+skill/anti-slop-design/scripts/.deal-history.json
