@@ -699,7 +699,11 @@ async function main(): Promise<void> {
     return;
   }
 
-  const port = Number(process.env.PORT ?? 3000);
+  // PORT is usually a number, but some shared hosts (Hostinger / Passenger)
+  // pass it as a Unix socket path instead. Bind to the socket in that case.
+  const portEnv = process.env.PORT ?? "3000";
+  const portNum = Number(portEnv);
+  const listenTarget: number | string = Number.isFinite(portNum) && portEnv.trim() !== "" ? portNum : portEnv;
   const httpServer = createHttpServer(async (req, res) => {
     if (req.url === "/health") {
       res.writeHead(200, { "Content-Type": "application/json" });
@@ -733,8 +737,8 @@ async function main(): Promise<void> {
       }
     }
   });
-  httpServer.listen(port, () => {
-    log(`anti-slop-design v${VERSION} running on Streamable HTTP at http://localhost:${port}/mcp (stateless; health at /health)`);
+  httpServer.listen(listenTarget, () => {
+    log(`anti-slop-design v${VERSION} running on Streamable HTTP at ${listenTarget}/mcp (stateless; health at /health)`);
     log("Cold-start note: on free tiers (Render/Fly.io/Railway/Cloud Run) the first request after idle can take 30-60s. stdio mode has no cold start — prefer it for local use.");
   });
 }
