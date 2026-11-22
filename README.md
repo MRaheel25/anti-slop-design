@@ -25,6 +25,24 @@ Then ask your agent to design a logo, social post, ad, landing page, or app scre
 
 ## Install the MCP server
 
+Hosted, no install needed:
+
+- Endpoint: `https://mcp.grafigator.com/mcp` (Streamable HTTP)
+- Health: `https://mcp.grafigator.com/health`
+
+```json
+{
+  "mcpServers": {
+    "anti-slop-design": {
+      "type": "streamable-http",
+      "url": "https://mcp.grafigator.com/mcp"
+    }
+  }
+}
+```
+
+Or run it locally:
+
 ```bash
 git clone https://github.com/MRaheel25/anti-slop-design.git
 cd anti-slop-design/mcp

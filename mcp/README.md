@@ -63,7 +63,22 @@ in `claude_desktop_config.json`. Full ready-to-paste files are in
 `examples/mcp-vscode.json`, `examples/mcp-claude-desktop.json` — replace
 `/absolute/path/to/anti-slop-design/mcp` with your real path.
 
-### Streamable HTTP (optional — for hosted use)
+### Streamable HTTP (hosted — no install needed)
+
+Live at `https://mcp.grafigator.com/mcp` (health: `https://mcp.grafigator.com/health`), hosted on Hostinger Node.js 20.x.
+
+```json
+{
+  "mcpServers": {
+    "anti-slop-design": {
+      "type": "streamable-http",
+      "url": "https://mcp.grafigator.com/mcp"
+    }
+  }
+}
+```
+
+### Streamable HTTP (optional — for self-hosted use)
 
 ```bash
 PORT=3000 node dist/server.js --http   # or MCP_TRANSPORT=http
